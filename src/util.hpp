@@ -13,7 +13,7 @@ using namespace std;
 
 // Verify G16 proof.
 template <typename ppT, typename FieldT>
-bool verify_proof(
+bool verify(
     const r1cs_gg_ppzksnark_verification_key<ppT> verification_key,
     const r1cs_primary_input<FieldT> primary_input,
     const r1cs_gg_ppzksnark_proof<ppT> proof) {

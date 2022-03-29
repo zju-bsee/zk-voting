@@ -14,3 +14,9 @@ git submodule update --init --recursive --depth 1
 mkdir build && cd build && cmake ..
 make
 ```
+
+# 运行测试
+测试程序需要传入一个证明者的秘密输入x，程序打印其证明x^3 + x + 5 = 35的结果
+```sh
+./build/src/test 3
+```
