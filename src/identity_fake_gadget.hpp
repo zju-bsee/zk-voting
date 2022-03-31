@@ -6,6 +6,8 @@
 #include <libsnark/gadgetlib1/pb_variable.hpp>
 #include <libsnark/zk_proof_systems/ppzksnark/r1cs_gg_ppzksnark/r1cs_gg_ppzksnark.hpp>
 
+#include "util.hpp"
+
 template <typename FieldT>
 class identity_gadget : public gadget<FieldT> {
    public:
