@@ -25,7 +25,7 @@ JNIEXPORT jobject JNICALL Java_cn_edu_zjucst_jni_ZKVotingJNI_generateVoterKeys(
 
     // Create a protoboard for variables.
     protoboard<FieldT> pb;
-    identity_gadget<FieldT> g(pb, voter_count);
+    identity::identity_gadget<FieldT> g(pb, voter_count);
     g.generate_r1cs_constraints();
 
     auto cs = pb.get_constraint_system();

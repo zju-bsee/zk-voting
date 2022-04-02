@@ -8,6 +8,7 @@
 
 #include "util.hpp"
 
+namespace identity {
 template <typename FieldT>
 class identity_gadget : public gadget<FieldT> {
    public:
@@ -81,5 +82,6 @@ class identity_gadget : public gadget<FieldT> {
         }
     }
 };
+}  // namespace identity
 
 #endif

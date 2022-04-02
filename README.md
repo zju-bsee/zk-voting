@@ -20,3 +20,15 @@ make
 ```sh
 ./build/src/test 3
 ```
+
+# 测试JNI
+测试前需要保证动态链接库构建完成:
+```sh
+cd build
+make
+```
+之后在JNI文件夹下编译Java字节码文件、拷贝构建的动态链接库并运行:
+```sh
+cd src/jni
+make
+```
