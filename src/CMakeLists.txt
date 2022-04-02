@@ -40,31 +40,11 @@ target_include_directories(
   ${DEPENDS_DIR}/libsnark/depends/libff
 )
 
-# # 选民身份证明测试gadget
-# add_executable(
-#   identity_fake_gadget
-
-#   identity_fake_test.cpp
-# )
-# target_link_libraries(
-#   identity_fake_gadget
-
-#   snark
-# )
-# target_include_directories(
-#   identity_fake_gadget
-
-#   PUBLIC
-#   ${DEPENDS_DIR}/libsnark
-#   ${DEPENDS_DIR}/libsnark/depends/libfqfft
-#   ${DEPENDS_DIR}/libsnark/depends/libff
-# )
-
 # 选民身份证明测试动态链接库
 add_library(
   zkvoting SHARED
 
-  jni.cpp
+  library.cpp
 )
 target_link_libraries(
   zkvoting

@@ -1,8 +1,12 @@
-../cn_edu_zjucst_jni_ZKVotingJNI.h: cn/edu/zjucst/jni/ZKVotingJNI.java
+all: clean compile run
+
+compile:
 	javac -h .. cn/edu/zjucst/jni/ZKVotingJNI.java
+
 clean:
 	rm cn/edu/zjucst/jni/*.class
-run:
-	cp ../../build/src/libzkvoting.so . && java -Djava.library.path=. cn.edu.zjucst.jni.ZKVotingJNI
 
-.phony: clean
+run:
+	cp ../../build/src/libzkvotingd.so ./libzkvoting.so && java -Djava.library.path=. cn.edu.zjucst.jni.ZKVotingJNI
+
+.phony: clean compile
