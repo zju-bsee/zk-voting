@@ -8,6 +8,8 @@
 using namespace libsnark;
 using namespace std;
 
+// 这个文件是JNI调用入口
+
 // Default curve for G16.
 typedef libff::Fr<default_r1cs_gg_ppzksnark_pp> FieldT;
 
@@ -30,7 +32,7 @@ JNIEXPORT jobject JNICALL Java_cn_edu_zjucst_jni_ZKVotingJNI_generateVoterKeys(
     auto keypair =
         r1cs_gg_ppzksnark_generator<default_r1cs_gg_ppzksnark_pp>(cs);
 
-    return create_keys(env, keypair);
+    return jni_utils::create_keys(env, keypair);
 }
 
 /*

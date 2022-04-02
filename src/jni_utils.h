@@ -4,8 +4,8 @@
 #include <jni.h>
 
 #include <iostream>
-#include <libsnark/zk_proof_systems/ppzksnark/r1cs_gg_ppzksnark/r1cs_gg_ppzksnark.hpp>
 #include <libff/algebra/curves/alt_bn128/alt_bn128_g1.hpp>
+#include <libsnark/zk_proof_systems/ppzksnark/r1cs_gg_ppzksnark/r1cs_gg_ppzksnark.hpp>
 #include <sstream>
 #include <vector>
 typedef default_r1cs_gg_ppzksnark_pp ppT;
@@ -13,6 +13,7 @@ typedef default_r1cs_gg_ppzksnark_pp ppT;
 const char *G1_PATH = "cn/edu/zjucst/jni/G1";
 const char *G2_PATH = "cn/edu/zjucst/jni/G2";
 
+namespace jni_utils {
 // Create a string from any type.
 template <typename T>
 std::string any_to_string(T t) {
@@ -123,7 +124,7 @@ jobject create_verifying_key(JNIEnv *env,
     env->SetObjectField(vk_object, vk_delta_g2_fieldID,
                         create_g2(env, vk.delta_g2.X.c0, vk.delta_g2.X.c1,
                                   vk.delta_g2.Y.c0, vk.delta_g2.Y.c1));
-    
+
     // gamma_abc_g1
     jfieldID vk_gamma_abc_g1_fieldID =
         env->GetFieldID(vk_class, "gamma_abc", "[Lcn/edu/zjucst/jni/G1;");
@@ -132,19 +133,17 @@ jobject create_verifying_key(JNIEnv *env,
 
     const auto &now = vk.gamma_ABC_g1.first;
     for (size_t i = 0; i < size; i++) {
-        
-
         // const auto &g1 = vk.gamma_ABC_g1[i];
         // env->SetObjectArrayElement(gamma_abc_array, i,
-                                //    create_g1(env, vk.gamma_ABC_g1, 12341234123));
+        //    create_g1(env, vk.gamma_ABC_g1, 12341234123));
     }
-    
 
     return vk_object;
 }
 
 // Create a proving key object from the libsnark proving key.
-jobject create_proving_key(JNIEnv *env, r1cs_gg_ppzksnark_proving_key<ppT> &pk) {
+jobject create_proving_key(JNIEnv *env,
+                           r1cs_gg_ppzksnark_proving_key<ppT> &pk) {
     // Create a proving key object
     jobject pk_object =
         env->AllocObject(env->FindClass("cn/edu/zjucst/jni/ProvingKey"));
@@ -223,7 +222,7 @@ jobject create_keys(JNIEnv *env, r1cs_gg_ppzksnark_keypair<ppT> &keypair) {
 }
 
 // TODO: proof不用序列化字段
-r1cs_gg_ppzksnark_proof<ppT> get_proof(JNIEnv *env, jobject proof_object) {
-}
+r1cs_gg_ppzksnark_proof<ppT> get_proof(JNIEnv *env, jobject proof_object) {}
+}  // namespace JNIUtils
 
 #endif
