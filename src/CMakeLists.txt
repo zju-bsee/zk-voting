@@ -60,6 +60,25 @@ target_include_directories(
   ${DEPENDS_DIR}/libsnark/depends/libff
 )
 
+add_executable(
+  backup
+
+  backup.cpp
+)
+target_link_libraries(
+  backup
+
+  snark
+)
+target_include_directories(
+  backup
+
+  PUBLIC
+  ${DEPENDS_DIR}/libsnark
+  ${DEPENDS_DIR}/libsnark/depends/libfqfft
+  ${DEPENDS_DIR}/libsnark/depends/libff
+)
+
 # 关闭调试模式，否则gadget输入不满足约束会直接exit
 option(
   DEBUG

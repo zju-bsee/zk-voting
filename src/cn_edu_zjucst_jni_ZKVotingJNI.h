@@ -10,18 +10,26 @@ extern "C" {
 /*
  * Class:     cn_edu_zjucst_jni_ZKVotingJNI
  * Method:    generateVoterKeys
- * Signature: (I)Lcn/edu/zjucst/jni/Key;
+ * Signature: ([Ljava/lang/String;)Lcn/edu/zjucst/jni/Key;
  */
 JNIEXPORT jobject JNICALL Java_cn_edu_zjucst_jni_ZKVotingJNI_generateVoterKeys
-  (JNIEnv *, jclass, jint);
+  (JNIEnv *, jclass, jobjectArray);
 
 /*
  * Class:     cn_edu_zjucst_jni_ZKVotingJNI
  * Method:    verifyVoterProof
- * Signature: (Lcn/edu/zjucst/jni/Proof;)Z
+ * Signature: (Lcn/edu/zjucst/jni/Proof;Lcn/edu/zjucst/jni/VerifyingKey;)Z
  */
 JNIEXPORT jboolean JNICALL Java_cn_edu_zjucst_jni_ZKVotingJNI_verifyVoterProof
-  (JNIEnv *, jobject, jobject);
+  (JNIEnv *, jclass, jobject, jobject);
+
+/*
+ * Class:     cn_edu_zjucst_jni_ZKVotingJNI
+ * Method:    generateVoterProof
+ * Signature: ([BLjava/math/BigInteger;[Ljava/lang/String;)Lcn/edu/zjucst/jni/Proof;
+ */
+JNIEXPORT jobject JNICALL Java_cn_edu_zjucst_jni_ZKVotingJNI_generateVoterProof
+  (JNIEnv *, jclass, jbyteArray, jobject, jobjectArray);
 
 #ifdef __cplusplus
 }
