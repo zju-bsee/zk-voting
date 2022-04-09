@@ -1,4 +1,7 @@
 *~
 build
 depends/libsnark/*
-src/jni/*.class
+
+src/jni/cn/edu/zjucst/jni/*.class
+src/jni/*.so
+src/jni/*.txt

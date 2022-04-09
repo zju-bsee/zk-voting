@@ -54,7 +54,7 @@ public class ZKVotingJNI {
      * 生成选民身份证明
      * 
      * @param pk     证明者密钥provingKey bytes
-     * @param secret 证明者秘密输入
+     * @param secret=id+salt 证明者秘密输入
      * @return 选民身份证明，若为空证明生成失败
      */
     public static Proof GenerateVoteProof(byte[] pk, BigInteger id, BigInteger salt, BigInteger[] voterIDs) {

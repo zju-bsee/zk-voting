@@ -1,3 +1,6 @@
+#include <fcntl.h>
+#include <unistd.h>
+
 #include <libsnark/common/default_types/r1cs_ppzksnark_pp.hpp>
 #include <libsnark/zk_proof_systems/ppzksnark/r1cs_ppzksnark/r1cs_ppzksnark.hpp>
 
@@ -12,6 +15,14 @@ using namespace std;
 
 typedef default_r1cs_ppzksnark_pp ppT;
 typedef libff::Fr<ppT> FieldT;
+
+void initialize() {
+    ppT::init_public_params();
+
+    // Disable zksnark output.
+    close(STDOUT_FILENO);
+    open("/dev/null", O_WRONLY);
+}
 
 // Generate a new key pair by the given voter_ids.
 JNIEXPORT jobject JNICALL Java_cn_edu_zjucst_jni_ZKVotingJNI_generateVoterKeys(
@@ -74,9 +85,7 @@ JNIEXPORT jobject JNICALL Java_cn_edu_zjucst_jni_ZKVotingJNI_generateVoterProof(
 
     // Parse the proving key.
     auto pk = jni_from_java::parse_proving_key(env, jpk_bytes);
-    std::cout << "A query size: " << pk.A_query.size() << std::endl;
-    std::cout << "After size: " << any_to_string(pk).size() << std::endl;
-
+    
     // Parse the voter ids.
     auto id = jni_from_java::parse_bigint(env, jbigint_id);
     auto voterIDs = jni_from_java::jstring_array_to_nums(env, jvoter_ids);

@@ -143,20 +143,17 @@ void print_vk_to_file(r1cs_ppzksnark_verification_key<ppT> vk,
     vk_data << "[[\"" << C.X.c0 << "\",\"" << C.X.c1 << "\"],";
     vk_data << "[\"" << C.Y.c0 << "\",\"" << C.Y.c1 << "\"]]" << std::endl;
 
-    std::cout << "gamma" << std::endl;
     libff::G2<ppT> gamma(vk.gamma_g2);
     gamma.to_affine_coordinates();
     vk_data << "[[\"" << gamma.X.c0 << "\",\"" << gamma.X.c1 << "\"],";
     vk_data << "[\"" << gamma.Y.c0 << "\",\"" << gamma.Y.c1 << "\"]]"
             << std::endl;
 
-    std::cout << "gamma_beta_1" << std::endl;
     G1<ppT> gamma_beta_1(vk.gamma_beta_g1);
     gamma_beta_1.to_affine_coordinates();
     vk_data << "[\"" << gamma_beta_1.X << "\",\"" << gamma_beta_1.Y << "\"]"
             << std::endl;
 
-    std::cout << "gamma_beta_2" << std::endl;
     libff::G2<ppT> gamma_beta_2(vk.gamma_beta_g2);
     gamma_beta_2.to_affine_coordinates();
     vk_data << "[[\"" << gamma_beta_2.X.c0 << "\",\"" << gamma_beta_2.X.c1
@@ -164,19 +161,16 @@ void print_vk_to_file(r1cs_ppzksnark_verification_key<ppT> vk,
     vk_data << "[\"" << gamma_beta_2.Y.c0 << "\",\"" << gamma_beta_2.Y.c1
             << "\"]]" << std::endl;
 
-    std::cout << "Z" << std::endl;
     libff::G2<ppT> Z(vk.rC_Z_g2);
     Z.to_affine_coordinates();
     vk_data << "[[\"" << Z.X.c0 << "\",\"" << Z.X.c1 << "\"],";
     vk_data << "[\"" << Z.Y.c0 << "\",\"" << Z.Y.c1 << "\"]]" << std::endl;
 
-    std::cout << "IC" << std::endl;
     accumulation_vector<G1<ppT>> IC(vk.encoded_IC_query);
     G1<ppT> IC_0(IC.first);
     IC_0.to_affine_coordinates();
     vk_data << "[\"" << IC_0.X << "\",\"" << IC_0.Y << "\"]" << std::endl;
 
-    std::cout << "IC.size: " << IC.size() << std::endl;
     for (size_t i = 0; i < IC.size(); i++) {
         G1<ppT> IC_N(IC.rest[i]);
         IC_N.to_affine_coordinates();

@@ -40,11 +40,11 @@ target_include_directories(
   ${DEPENDS_DIR}/libsnark/depends/libff
 )
 
-# 选民身份证明测试动态链接库
+# JNI动态链接库
 add_library(
   zkvoting SHARED
 
-  library.cpp
+  jni_library/jni_library.cpp
 )
 target_link_libraries(
   zkvoting
@@ -53,25 +53,6 @@ target_link_libraries(
 )
 target_include_directories(
   zkvoting
-
-  PUBLIC
-  ${DEPENDS_DIR}/libsnark
-  ${DEPENDS_DIR}/libsnark/depends/libfqfft
-  ${DEPENDS_DIR}/libsnark/depends/libff
-)
-
-add_executable(
-  backup
-
-  backup.cpp
-)
-target_link_libraries(
-  backup
-
-  snark
-)
-target_include_directories(
-  backup
 
   PUBLIC
   ${DEPENDS_DIR}/libsnark

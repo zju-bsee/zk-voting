@@ -3,7 +3,7 @@
 all: clean compile run
 
 compile:
-	javac -h .. cn/edu/zjucst/jni/ZKVotingJNI.java
+	javac -h ../jni_library cn/edu/zjucst/jni/ZKVotingJNI.java
 
 run:
 	cp ../../build/src/libzkvoting.so .
